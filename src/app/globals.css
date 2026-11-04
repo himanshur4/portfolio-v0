@@ -1,0 +1,518 @@
+@import "tailwindcss";
+
+/* The theme is driven by <html data-theme="light|dark">, set before first paint
+   by the inline script in layout.tsx. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+@theme inline {
+  --default-transition-duration: 450ms;
+
+  --color-paper: var(--paper);
+  --color-raised: var(--raised);
+  --color-sunk: var(--sunk);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-rule: var(--rule);
+  --color-rule-strong: var(--rule-strong);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-clay: var(--clay);
+
+  --font-sans: var(--font-schibsted), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+
+/* ---------------------------------------------------------------------------
+   Tokens. Text colours were checked for WCAG AA against paper, raised and sunk
+   surfaces in both themes; `faint`, `rule` and `contour*` are decorative only.
+   --------------------------------------------------------------------------- */
+:root {
+  --paper: #edf0f4;
+  --raised: #f6f8fa;
+  --sunk: #e2e6ec;
+  --ink: #161b22;
+  --ink-2: #343c47;
+  --muted: #56606d;
+  --faint: #8a94a1;
+  --rule: #d6dbe3;
+  --rule-strong: #bcc4cf;
+  --accent: #354151;
+  --accent-soft: #dde2e9;
+  --clay: #5a6272;
+  --contour: #b7c0cb;
+  --contour-index: #97a1ae;
+  --selection: #cdd5df;
+  --shadow: 22 27 34;
+  --motion: 0.45s;
+  --ease-calm: cubic-bezier(0.16, 1, 0.3, 1);
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --paper: #0e0f11;
+  --raised: #17181b;
+  --sunk: #090a0b;
+  --ink: #edeef0;
+  --ink-2: #c8cbd0;
+  --muted: #989ba2;
+  --faint: #62656b;
+  --rule: #222327;
+  --rule-strong: #36383d;
+  --accent: #cfd6e2;
+  --accent-soft: #202125;
+  --clay: #b4bac6;
+  --contour: #232529;
+  --contour-index: #37393f;
+  --selection: #33353a;
+  --shadow: 0 0 0;
+  color-scheme: dark;
+}
+
+/* Without JavaScript the attribute is never set, so follow the system. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --paper: #0e0f11;
+    --raised: #17181b;
+    --sunk: #090a0b;
+    --ink: #edeef0;
+    --ink-2: #c8cbd0;
+    --muted: #989ba2;
+    --faint: #62656b;
+    --rule: #222327;
+    --rule-strong: #36383d;
+    --accent: #cfd6e2;
+    --accent-soft: #202125;
+    --clay: #b4bac6;
+    --contour: #232529;
+    --contour-index: #37393f;
+    --selection: #33353a;
+    --shadow: 0 0 0;
+    color-scheme: dark;
+  }
+}
+
+/* --------------------------------------------------------------------------- */
+
+@layer base {
+  html {
+    scroll-padding-top: 5rem;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: var(--selection);
+    color: var(--ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+
+  p,
+  li,
+  dd {
+    text-wrap: pretty;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Layout
+   --------------------------------------------------------------------------- */
+@layer components {
+  .page {
+    width: 100%;
+    max-width: 60rem;
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 4.5vw, 2.5rem);
+  }
+
+  .section {
+    position: relative;
+    padding-block: clamp(2.75rem, 5vw, 4.25rem);
+  }
+
+  .section::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto;
+    height: 1px;
+    background-color: var(--rule);
+    transform-origin: left center;
+  }
+
+  .section-grid {
+    display: grid;
+    gap: 1.25rem 3rem;
+  }
+
+  @media (min-width: 64rem) {
+    .section-grid {
+      grid-template-columns: 11rem minmax(0, 1fr);
+    }
+
+    /* Section headings sit in the margin and stay in view while the section scrolls. */
+    .section-head {
+      position: sticky;
+      top: 6rem;
+      align-self: start;
+    }
+  }
+
+  .kicker {
+    font-family: var(--font-mono);
+    font-weight: 400;
+    font-size: 0.6875rem;
+    line-height: 1.4;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .meta {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    line-height: 1.5;
+    color: var(--muted);
+  }
+
+  /* ---------------------------------------------------------------------------
+     Links and buttons. Hover never relies on colour alone: underlines move and
+     thicken, arrows shift.
+     --------------------------------------------------------------------------- */
+  .link {
+    color: inherit;
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.24em;
+    text-decoration-color: color-mix(in oklab, currentColor 40%, transparent);
+    transition:
+      color var(--motion) ease,
+      text-decoration-color var(--motion) ease,
+      text-underline-offset var(--motion) ease,
+      text-decoration-thickness var(--motion) ease;
+  }
+
+  .link:hover {
+    color: var(--accent);
+    text-decoration-color: currentColor;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.3em;
+  }
+
+  /* Quiet links (navigation): no underline until hovered. */
+  .link-quiet {
+    text-decoration-color: transparent;
+  }
+
+  .link-quiet:hover {
+    text-decoration-color: currentColor;
+  }
+
+  .arrow {
+    display: inline-block;
+    flex: none;
+    transition: transform var(--motion) cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  a:hover .arrow-ne,
+  button:hover .arrow-ne {
+    transform: translate(2px, -2px);
+  }
+
+  a:hover .arrow-down {
+    transform: translateY(2px);
+  }
+
+  a:hover .arrow-up {
+    transform: translateY(-2px);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    min-height: 2.25rem;
+    padding: 0.4rem 0.95rem;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    line-height: 1.2;
+    white-space: nowrap;
+    transition:
+      background-color var(--motion) ease,
+      border-color var(--motion) ease,
+      color var(--motion) ease,
+      translate var(--motion) ease;
+  }
+
+  .btn-primary {
+    background-color: var(--ink);
+    color: var(--paper);
+  }
+
+  .btn-primary:hover {
+    background-color: var(--accent);
+  }
+
+  .btn-secondary {
+    border-color: var(--rule-strong);
+    color: var(--ink);
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--ink);
+    background-color: var(--raised);
+  }
+
+  .icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 999px;
+    color: var(--ink);
+    transition:
+      background-color var(--motion) ease,
+      color var(--motion) ease;
+  }
+
+  .icon-btn:hover {
+    background-color: var(--sunk);
+  }
+
+  /* ---------------------------------------------------------------------------
+     Hero: a profile header (cover + avatar), like a social profile page.
+     --------------------------------------------------------------------------- */
+  .cover {
+    position: relative;
+    height: clamp(7.25rem, 4.5rem + 12vw, 12.5rem);
+    overflow: hidden;
+    border-radius: 0.875rem;
+    border: 1px solid var(--rule);
+    background-color: var(--sunk);
+  }
+
+  .cover-art {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    color: var(--contour);
+  }
+
+  .cover-art .contour-index {
+    color: var(--contour-index);
+  }
+
+  .avatar {
+    --size: clamp(5.5rem, 4.4rem + 4.8vw, 8.25rem);
+    position: relative;
+    width: var(--size);
+    height: var(--size);
+    margin-top: calc(var(--size) * -0.5);
+    flex: none;
+    overflow: hidden;
+    border-radius: 24%;
+    background-color: var(--raised);
+    box-shadow:
+      0 0 0 4px var(--paper),
+      0 0 0 5px var(--rule);
+  }
+
+  /* Dash-marked list, used in Experience. */
+  .bullets {
+    display: grid;
+    gap: 0.3rem;
+  }
+
+  .bullets > li {
+    position: relative;
+    padding-left: 1.1rem;
+  }
+
+  .bullets > li::before {
+    content: "";
+    position: absolute;
+    left: 0.1rem;
+    top: 0.72em;
+    width: 0.45rem;
+    height: 1px;
+    background-color: var(--muted);
+  }
+
+  /* ---------------------------------------------------------------------------
+     Motion: slow and soft, like mist settling. Everything here switches off when
+     the visitor asks for less motion, and nothing waits on it: links work and
+     text can be selected from the first frame.
+     --------------------------------------------------------------------------- */
+  @media (prefers-reduced-motion: no-preference) {
+    /* On load, the page settles in from the top down. */
+    header[data-site-header] {
+      animation: drift-down 1.4s var(--ease-calm) both;
+    }
+
+    .avatar {
+      animation: avatar-in 1.6s var(--ease-calm) 0.25s both;
+    }
+
+    .rise > *,
+    .rise-item {
+      animation: rise 1.4s var(--ease-calm) 0.45s both;
+    }
+
+    .rise > :nth-child(2) {
+      animation-delay: 0.6s;
+    }
+
+    .rise > :nth-child(3) {
+      animation-delay: 0.75s;
+    }
+
+    .rise > :nth-child(4) {
+      animation-delay: 0.9s;
+    }
+
+    .rise > :nth-child(n + 5) {
+      animation-delay: 1.05s;
+    }
+
+    .snow {
+      animation: fade 5s ease 1.5s both;
+    }
+
+    /* While scrolling, each block fades up once as it arrives and section lines draw
+       themselves from the left (RevealObserver runs those). This only hides anything
+       after the inline script confirms JavaScript is running. */
+    [data-motion] .reveal {
+      opacity: 0;
+    }
+
+    [data-motion] .section::before {
+      transform: scaleX(0);
+    }
+
+    /* Failsafe: if the script bundle never arrives, show everything anyway. */
+    [data-motion="pending"] .reveal,
+    [data-motion="pending"] .section::before {
+      animation: settle 1.2s ease 3s forwards;
+    }
+
+    /* Small, unhurried responses to the pointer. */
+    @media (hover: hover) {
+      .btn:hover {
+        translate: 0 -1px;
+      }
+
+      .avatar img {
+        transition: scale 1.4s var(--ease-calm);
+      }
+
+      .avatar:hover img {
+        scale: 1.04;
+      }
+
+      article h3 {
+        transition: translate 0.9s var(--ease-calm);
+      }
+
+      article:hover h3 {
+        translate: 3px 0;
+      }
+    }
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+    filter: blur(6px);
+  }
+}
+
+@keyframes drift-down {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes avatar-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.96);
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes settle {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Theme switch cross-fade (only runs where View Transitions exist). */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.7s;
+}
+
+@media print {
+  * {
+    animation: none !important;
+  }
+
+  [data-motion] .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  [data-motion] .section::before {
+    transform: none !important;
+  }
+
+  header[data-site-header] {
+    position: static !important;
+  }
+}
