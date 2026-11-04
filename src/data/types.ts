@@ -85,10 +85,14 @@ export interface SkillGroup {
   items: string[];
 }
 
+export type Platform = "LeetCode" | "Codeforces" | "AtCoder" | "CodeChef";
+
 export interface PracticeProfile {
-  platform: string;
-  result: string;
+  platform: Platform;
+  handle: string;
   href: Href;
+  /** The site never shows a lower maximum than this. */
+  maxRating: number;
 }
 
 export interface Practice {

@@ -2,16 +2,19 @@ import { featuredProjects } from "@/data/portfolio";
 
 import { ArrowDown } from "../icons";
 
+/** How many projects this list shows. */
+const LISTED_PROJECTS = 3;
+
 /**
- * A notebook-style contents list for wide screens: the featured projects,
- * reachable from the first screen.
+ * A notebook-style contents list for wide screens: the first few featured
+ * projects, reachable from the first screen.
  */
 export function WorkIndex() {
   return (
-    <nav aria-label="Selected work" className="hidden self-end lg:block">
-      <p className="kicker rise-item">Selected work</p>
+    <nav aria-label="Projects" className="hidden self-end lg:block">
+      <p className="kicker rise-item">Projects</p>
       <ol className="rise rise-item mt-3 border-t border-rule">
-        {featuredProjects.map((project, index) => (
+        {featuredProjects.slice(0, LISTED_PROJECTS).map((project, index) => (
           <li key={project.slug} className="border-b border-rule">
             <a
               href={`#${project.slug}`}

@@ -1,6 +1,7 @@
 import { ContactSection } from "@/components/contact-section";
 import { ExperienceSection } from "@/components/experience-section";
 import { Hero } from "@/components/hero/hero";
+import { ProblemSolvingSection } from "@/components/problem-solving-section";
 import { SkillsSection } from "@/components/skills-section";
 import { WorkSection } from "@/components/work/work-section";
 import { profile, site } from "@/data/portfolio";
@@ -31,7 +32,7 @@ export default function HomePage() {
       <SkillsSection />
       <WorkSection />
       <ExperienceSection />
-      
+      <ProblemSolvingSection />
       <ContactSection />
       <script
         type="application/ld+json"

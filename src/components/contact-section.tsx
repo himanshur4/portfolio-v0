@@ -15,9 +15,7 @@ export function ContactSection() {
   return (
     <Section id="contact" title="Contact">
       <p className="reveal max-w-xl text-ink-2">
-        {profile.availability
-          ? "I’m looking for SDE / SWE and full-stack roles. Email is the quickest way to reach me."
-          : "Email is the quickest way to reach me."}
+        {profile.availability && `${profile.availability}. `}Email is the quickest way to reach me.
       </p>
 
       {email && (

@@ -49,7 +49,7 @@ export function Hero() {
             <span className="sr-only">, </span>
             {profile.location}
           </p>
-          <p className="mt-5 max-w-[34ch] text-[clamp(1.125rem,1.02rem+0.45vw,1.375rem)] leading-[1.28] tracking-[-0.015em] text-ink">
+          <p className="mt-5 max-w-[34ch] text-[clamp(1.125rem,1.02rem+0.45vw,1.375rem)] leading-[1.28] tracking-[-0.015em] text-balance text-ink">
             {profile.headline}
           </p>
           <p className="mt-3 max-w-152 text-ink-2">{profile.intro}</p>
@@ -64,8 +64,8 @@ export function Hero() {
             <ul className="flex flex-wrap gap-x-5 gap-y-2 text-[0.8125rem]">
               {/* On wide screens the project index beside this column replaces this link. */}
               <li className="lg:hidden">
-                <a href="#work" className="link inline-flex items-center gap-[0.3em]">
-                  Selected work
+                <a href="#projects" className="link inline-flex items-center gap-[0.3em]">
+                  Projects
                   <ArrowDown />
                 </a>
               </li>

@@ -25,7 +25,7 @@ export const site: Site = {
   // NEXT_PUBLIC_SITE_URL overrides it; on Vercel the production URL is used as a fallback.
   url: "YOUR_SITE_URL",
   description:
-    "I build full-stack products and like understanding the systems behind them. Final-year CSE student at IIIT Ranchi, open to SDE / SWE roles.",
+    "Software engineer building backend systems and full-stack products. Final-year CSE student at IIIT Ranchi, open to SDE / SWE roles.",
 };
 
 export const profile: Profile = {
@@ -34,10 +34,9 @@ export const profile: Profile = {
   lastName: "Raj",
   role: "Software Engineer",
   location: "Ranchi, India",
-  headline:
-    "I build full-stack products and like understanding the systems behind them.",
+  headline: "I build backend systems and full-stack products.",
   intro:
-    "Final-year B.Tech CSE student at IIIT Ranchi, previously a full-stack intern at CreditSea. Lately I’ve been building real-time apps and the services behind them.",
+    "I’m a final-year Computer Science student at IIIT Ranchi. I enjoy building products end to end and understanding the systems behind them.",
   availability: "Open to SDE / SWE roles",
   // Add a square-ish photo at public/avatar.jpg (or change the path). Initials show until then.
   avatar: { src: "/avatar1.png", alt: "Portrait of Himanshu Raj" },
@@ -62,27 +61,34 @@ export const featuredProjects: FeaturedProject[] = [
     period: "2026",
     kind: "Event streaming broker",
     description:
-      "An event streaming broker I’m building in TypeScript using only Node’s standard library. Records go into partitioned, append-only logs on disk, with CRC-checked batches, an offset index and crash recovery for torn writes. Storage and topics are done and tested; networking and replication are next.",
-    stack: ["TypeScript", "Node.js", "node:fs", "node:test"],
+      "A persistent event streaming broker built from scratch in TypeScript with no runtime dependencies, using a custom binary protocol over TCP. Its crash-safe storage engine recovers from torn writes without losing acknowledged records, and consumer groups use heartbeats to detect failures and rebalance partitions across members.",
+    stack: [
+      "TypeScript",
+      "Node.js",
+      "TCP sockets",
+      "Binary protocol design",
+      "Storage engines",
+      "Pub/Sub messaging",
+    ],
     source: "https://github.com/himanshur4/event-rail",
   },
   {
     slug: "chatter",
     name: "Chatter",
     period: "2026",
-    kind: "Real-time chat",
+    kind: "Real-time chat platform",
     description:
-      "A real-time chat app split into three services: users, chat and mail. Sign-in works with an email code, using Redis for expiry and rate limiting and a RabbitMQ worker to send the mail. Socket.IO delivers messages, typing indicators, online status and read receipts.",
+      "A real-time chat platform built as 3 Node.js microservices (user, chat, mail) that communicate over REST and RabbitMQ. Passwordless OTP login uses Redis for expiry and rate limiting, and Socket.IO handles presence, typing and read receipts. GitHub Actions deploys to AWS EC2 with health checks and automatic rollback.",
     stack: [
-      "Next.js",
       "TypeScript",
-      "Express",
+      "Node.js",
+      "Next.js",
       "Socket.IO",
-      "Prisma",
-      "MongoDB",
-      "Redis",
       "RabbitMQ",
-      "Cloudinary",
+      "Redis",
+      "MongoDB",
+      "Docker",
+      "GitHub Actions",
       "AWS EC2",
       "Nginx",
     ],
@@ -95,7 +101,7 @@ export const featuredProjects: FeaturedProject[] = [
     period: "2025–26",
     kind: "Course platform",
     description:
-      "An online course platform where educators publish courses and students pay to enroll and track their progress. Stripe handles payments, with enrollment confirmed by a signed webhook rather than the browser. Clerk manages sign-in and roles, and Redis caches the course list.",
+      "An online learning platform where educators publish courses and students pay, enroll and track progress. A signed Stripe webhook confirms each enrollment, not the browser. Clerk handles role-based sign-in, and Redis caches the course list, clearing it when a new course is published.",
     stack: [
       "React",
       "Vite",
@@ -116,7 +122,7 @@ export const featuredProjects: FeaturedProject[] = [
     period: "2025",
     kind: "Video calls & chat",
     description:
-      "A language-exchange app where people find each other, send friend requests, then chat or start a one-to-one video call. The Express API owns accounts and the friend graph and signs the tokens for Stream, which runs the chat and video. Login uses a JWT in an httpOnly cookie.",
+      "A video calling and chat app where users add friends, then message or start one-to-one calls. The Express API manages accounts and friend requests and issues tokens for Stream, which runs chat and video. Login uses a JWT in an httpOnly cookie.",
     stack: [
       "React",
       "Vite",
@@ -134,9 +140,9 @@ export const featuredProjects: FeaturedProject[] = [
     slug: "khetmitra",
     name: "KhetMitra",
     period: "2026",
-    kind: "Voice farm advisor",
+    kind: "AI farm advisor",
     description:
-      "A voice-first farm advisor that answers in Hindi or English. An agent loop pulls live weather, mandi prices, soil data and official advisories, and a guardrail removes any number no source supports. A daily check warns farmers before bad weather reaches their crops.",
+      "A voice-first AI farm advisor that answers in Hindi or English. An agent loop pulls live weather, mandi prices, soil data and official advisories, and a guardrail removes any number no source supports. A daily check warns farmers before bad weather reaches their crops.",
     stack: [
       "Next.js",
       "TypeScript",
@@ -158,7 +164,7 @@ export const otherProjects: OtherProject[] = [
     name: "ExpenseWise",
     period: "2025",
     description:
-      "An expense tracker with a GraphQL API: Apollo Server on Express, Passport sessions stored in MongoDB, and Chart.js breakdowns by category.",
+      "An expense tracker with a GraphQL API (Apollo Server on Express), Passport sessions stored in MongoDB, and Chart.js breakdowns by category.",
     stack: ["React", "Apollo Client", "GraphQL", "Passport", "MongoDB", "Chart.js"],
     source: "https://github.com/himanshur4/Expense-wise",
     // The Render demo (https://expense-wise-o97x.onrender.com) didn't respond on
@@ -168,7 +174,7 @@ export const otherProjects: OtherProject[] = [
     name: "TripNest",
     period: "2025",
     description:
-      "A trip planner on Firebase: itineraries with day-by-day activities and cover photos, plus a Discover page that pairs Unsplash photos with descriptions written by Gemini.",
+      "A trip planner on Firebase with day-by-day itineraries and cover photos. Its Discover page pairs Unsplash photos with descriptions generated by Gemini.",
     stack: ["React", "Firebase Auth", "Firestore", "TanStack Query", "Cloudinary", "Gemini API"],
     source: "https://github.com/himanshur4/trip-nest",
     demo: "https://trip-nest-1.web.app",
@@ -177,15 +183,15 @@ export const otherProjects: OtherProject[] = [
 
 export const experience: ExperienceItem[] = [
   {
-    role: "Full-stack developer intern",
+    role: "Full Stack Developer Intern",
     org: "CreditSea",
     location: "Remote",
     period: "Sep – Oct 2025",
     points: [
-      "Designed and built a new notification model for push notifications.",
-      "Developed REST APIs with cross-functional teams for a product serving 50,000+ daily users.",
-      "Optimized database queries using pipelining.",
-      "Improved the admin panel UI and resolved 20+ bugs across applications.",
+      "Replaced hardcoded push notifications with 10+ dynamic REST APIs, so admins can create notification types and send broadcasts without code changes.",
+      "Automated activity-based reminders with cron jobs for an app with 50,000+ daily users, prompting users to finish pending flows.",
+      "Cut API response times by 60% by moving filtering and querying into MongoDB aggregation pipelines.",
+      "Built a monthly loan report API that tracks borrowers and installment payments and updates loan and application statuses automatically, plus parts of the admin dashboard.",
     ],
   },
 ];
@@ -199,36 +205,71 @@ export const education: EducationItem[] = [
   },
 ];
 
-// Not shown on the site since the About section was removed; kept so the numbers aren't lost.
+// Only max ratings are shown, and they rise on their own (src/lib/cp-ratings.ts). These values
+// are the floor and the fallback for when a platform can't be reached. Last checked 2026-11-04.
 export const practice: Practice = {
-  summary:
-    "1,500+ problems solved and 100+ contests across LeetCode, Codeforces, CodeChef and GeeksforGeeks.",
+  summary: "1,500+ DSA problems solved and 100+ contests across platforms.",
   profiles: [
-    { platform: "LeetCode", result: "Max rating 1841", href: "https://leetcode.com/u/rajhimanshu403" },
-    { platform: "Codeforces", result: "Pupil", href: "https://codeforces.com/profile/himanshur4" },
-    { platform: "CodeChef", result: "3★", href: "https://www.codechef.com/users/himanshur4" },
-    { platform: "Codolio", result: "All platforms", href: "https://codolio.com/profile/rajhimanshu" },
+    {
+      platform: "LeetCode",
+      handle: "rajhimanshu403",
+      href: "https://leetcode.com/u/rajhimanshu403",
+      maxRating: 1841,
+    },
+    {
+      platform: "Codeforces",
+      handle: "himanshur4",
+      href: "https://codeforces.com/profile/himanshur4",
+      maxRating: 1280,
+    },
+    {
+      platform: "AtCoder",
+      handle: "himanshur4",
+      href: "https://atcoder.jp/users/himanshur4",
+      maxRating: 509,
+    },
+    {
+      platform: "CodeChef",
+      handle: "himanshur4",
+      href: "https://www.codechef.com/users/himanshur4",
+      maxRating: 1673,
+    },
   ],
 };
 
 export const skills: SkillGroup[] = [
   { label: "Languages", items: ["TypeScript", "JavaScript", "C++", "Java", "Python", "SQL"] },
   {
+    label: "Backend",
+    items: ["Node.js", "Express", "REST APIs", "GraphQL", "Socket.IO", "Prisma"],
+  },
+  {
     label: "Frontend",
     items: ["React", "Next.js", "Tailwind CSS", "Redux", "Zustand", "TanStack Query"],
   },
   {
-    label: "Backend & APIs",
-    items: ["Node.js", "Express", "GraphQL", "Socket.IO", "RabbitMQ"],
+    label: "Databases & messaging",
+    items: ["PostgreSQL", "MongoDB", "Redis", "Apache Kafka", "RabbitMQ"],
   },
-  { label: "Data", items: ["MongoDB", "PostgreSQL", "Redis", "Prisma"] },
-  { label: "Infrastructure & tools", items: ["AWS EC2", "Docker", "Nginx", "Linux", "Git"] },
+  {
+    label: "Cloud & DevOps",
+    items: ["AWS EC2", "Docker", "GitHub Actions", "Nginx", "Linux", "Cloudflare", "Git"],
+  },
+  {
+    label: "Backend concepts",
+    items: ["Distributed systems", "Microservices", "Event-driven architecture", "Caching", "WebSockets"],
+  },
+  {
+    label: "CS fundamentals",
+    items: ["Data structures & algorithms", "OOP", "Operating systems", "DBMS", "Computer networks"],
+  },
 ];
 
 /** In-page sections, in order. Used by the navigation. */
 export const sections = [
-  { id: "work", label: "Work" },
+  { id: "projects", label: "Projects" },
   { id: "experience", label: "Experience" },
   { id: "skills", label: "Skills" },
+  { id: "problem-solving", label: "Problem solving" },
   { id: "contact", label: "Contact" },
 ] as const;

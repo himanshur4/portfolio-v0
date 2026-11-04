@@ -20,10 +20,7 @@ export function SiteFooter() {
           <p>
             © <CurrentYear /> {profile.name}
           </p>
-          <p className="max-w-136">
-            Set in Schibsted Grotesk and JetBrains Mono.
-            {!getCover() && " The contour drawing is generated from noise; it isn’t a real map."}
-          </p>
+          
         </div>
         <a href="#top" className="meta link link-quiet inline-flex items-center gap-[0.35em] self-start">
           Back to top

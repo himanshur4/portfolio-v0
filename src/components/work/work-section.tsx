@@ -12,7 +12,7 @@ export function WorkSection() {
   const hiddenProjects = featuredProjects.slice(VISIBLE_PROJECTS);
 
   return (
-    <Section id="work" title="Selected work">
+    <Section id="projects" title="Projects">
       <div className="grid gap-8">
         {featuredProjects.slice(0, VISIBLE_PROJECTS).map((project, index) => (
           <div key={project.slug} className={index > 0 ? "border-t border-rule pt-8" : undefined}>

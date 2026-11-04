@@ -4,7 +4,7 @@ import { Section } from "./section";
 
 export function SkillsSection() {
   return (
-    <Section id="skills" title="Skills" intro="Grouped by what I use them for.">
+    <Section id="skills" title="Skills">
       <dl className="border-t border-rule">
         {skills.map((group) => (
           <div

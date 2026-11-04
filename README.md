@@ -1,6 +1,6 @@
 # Himanshu Raj — portfolio
 
-A one-page portfolio: selected projects, experience, skills and contact details.
+A one-page portfolio: selected projects, experience, skills, problem solving and contact details.
 
 Built with Next.js 16 (App Router), React 19, TypeScript and Tailwind CSS 4.
 
@@ -54,5 +54,9 @@ public/og.png     social preview image
   if JavaScript fails, everything still appears within a few seconds.
 - **Rendering**: the page is fully prerendered; `ensureStatic = "navigation"` in `src/app/page.tsx` fails the
   build if anything turns dynamic. The footer year is cached for a day.
+- **Ratings**: the site shows only each profile's max rating. `src/lib/cp-ratings.ts` reads the live and highest
+  ratings from each platform and caches the result for an hour. A visit after that shows the cached value and
+  refreshes it in the background. The `maxRating` in `src/data/portfolio.ts` is the floor, and it's shown if a
+  platform can't be reached (a warning is logged).
 - **Default cover**: `src/components/hero/contours.ts` was generated from seeded noise and marching squares.
   It's decorative and isn't a real map.
