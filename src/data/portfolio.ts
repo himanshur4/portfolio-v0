@@ -39,7 +39,7 @@ export const profile: Profile = {
     "I’m a final-year Computer Science student at IIIT Ranchi. I enjoy building products end to end and understanding the systems behind them.",
   availability: "Open to SDE / SWE roles",
   // Add a square-ish photo at public/avatar.jpg (or change the path). Initials show until then.
-  avatar: { src: "/avatar1.png", alt: "Portrait of Himanshu Raj" },
+  avatar: { src: "/avatar2.png", alt: "Portrait of Himanshu Raj" },
   // Your cover photo: save it as public/cover.jpg (for a .png or .webp, change the path here).
   // Until that file exists, the generated contour drawing is shown instead.
   cover: { src: "/cover48.png", alt: "cover" },
