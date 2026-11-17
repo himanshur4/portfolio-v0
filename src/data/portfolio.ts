@@ -267,8 +267,9 @@ export const skills: SkillGroup[] = [
 
 /** In-page sections, in order. Used by the navigation. */
 export const sections = [
-  { id: "projects", label: "Projects" },
   { id: "experience", label: "Experience" },
+  { id: "projects", label: "Projects" },
+  
   { id: "skills", label: "Skills" },
   { id: "problem-solving", label: "Problem solving" },
   { id: "contact", label: "Contact" },

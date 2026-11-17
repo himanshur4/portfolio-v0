@@ -29,9 +29,9 @@ export default function HomePage() {
   return (
     <main id="main" tabIndex={-1} className="focus:outline-none">
       <Hero />
-      <SkillsSection />
-      <WorkSection />
       <ExperienceSection />
+      <WorkSection />
+      <SkillsSection />
       <ProblemSolvingSection />
       <ContactSection />
       <script
